@@ -2,7 +2,7 @@ import {
   IntegrationStep,
   IntegrationStepExecutionContext,
   createIntegrationEntity,
-} from '@jupiterone/integration-sdk';
+} from '@jupiterone/integration-sdk-core';
 
 import { IntegrationConfig } from '../types';
 
@@ -13,7 +13,7 @@ const step: IntegrationStep<IntegrationConfig> = {
   async executionHandler({
     jobState,
   }: IntegrationStepExecutionContext<IntegrationConfig>) {
-    await jobState.addEntity([
+    await jobState.addEntity(
       createIntegrationEntity({
         entityData: {
           source: {
@@ -27,7 +27,7 @@ const step: IntegrationStep<IntegrationConfig> = {
           },
         },
       }),
-    ]);
+    );
   },
 };
 

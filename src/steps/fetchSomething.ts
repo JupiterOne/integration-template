@@ -2,7 +2,7 @@ import {
   IntegrationStep,
   IntegrationStepExecutionContext,
   createIntegrationEntity,
-} from '@jupiterone/integration-sdk';
+} from '@jupiterone/integration-sdk-core';
 
 import { IntegrationConfig } from '../types';
 import { createAPIClient } from '../client';
@@ -18,7 +18,7 @@ const step: IntegrationStep<IntegrationConfig> = {
     const apiClient = createAPIClient(instance.config);
 
     await apiClient.iterateSomething(async (something) => {
-      await jobState.addEntity([
+      await jobState.addEntity(
         createIntegrationEntity({
           entityData: {
             source: something,
@@ -28,7 +28,7 @@ const step: IntegrationStep<IntegrationConfig> = {
             },
           },
         }),
-      ]);
+      );
     });
   },
 };

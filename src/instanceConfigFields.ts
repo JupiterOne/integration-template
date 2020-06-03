@@ -1,4 +1,4 @@
-import { IntegrationInstanceConfigFieldMap } from '@jupiterone/integration-sdk';
+import { IntegrationInstanceConfigFieldMap } from '@jupiterone/integration-sdk-core';
 
 const instanceConfigFields: IntegrationInstanceConfigFieldMap = {
   clientId: {

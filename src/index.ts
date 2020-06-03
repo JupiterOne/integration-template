@@ -1,4 +1,4 @@
-import { IntegrationInvocationConfig } from '@jupiterone/integration-sdk';
+import { IntegrationInvocationConfig } from '@jupiterone/integration-sdk-core';
 
 import instanceConfigFields from './instanceConfigFields';
 import fetchAccounts from './steps/fetchAccounts';

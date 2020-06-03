@@ -1,4 +1,4 @@
-import { IntegrationInstanceConfig } from '@jupiterone/integration-sdk';
+import { IntegrationInstanceConfig } from '@jupiterone/integration-sdk-core';
 
 /**
  * Properties provided by the `IntegrationInstance.config`. This reflects the

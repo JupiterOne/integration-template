@@ -1,4 +1,4 @@
-import { IntegrationProviderAuthenticationError } from '@jupiterone/integration-sdk';
+import { IntegrationProviderAuthenticationError } from '@jupiterone/integration-sdk-core';
 
 import { IntegrationConfig } from './types';
 

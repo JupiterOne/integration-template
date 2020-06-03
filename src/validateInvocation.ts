@@ -1,7 +1,7 @@
 import {
   IntegrationExecutionContext,
   IntegrationValidationError,
-} from '@jupiterone/integration-sdk';
+} from '@jupiterone/integration-sdk-core';
 
 import { createAPIClient } from './client';
 import { IntegrationConfig } from './types';
