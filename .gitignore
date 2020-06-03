@@ -1,0 +1,5 @@
+node_modules/
+dist/
+.j1-integration/
+.env
+.eslintcache

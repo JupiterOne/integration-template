@@ -1,0 +1,4 @@
+{
+  "extends": "./node_modules/@jupiterone/integration-sdk-dev-tools/config/typescript.json",
+  "exclude": ["dist"]
+}

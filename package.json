@@ -1,0 +1,31 @@
+{
+  "name": "@jupiterone/integration-template",
+  "version": "1.0.0",
+  "description": "A JupiterOne Integration",
+  "license": "MPL-2.0",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "start": "j1-integration collect",
+    "graph": "j1-integration visualize",
+    "lint": "eslint . --cache --fix --ext .ts,.tsx",
+    "format": "prettier --write '**/*.{ts,js,json,css,md,yml}'",
+    "type-check": "tsc --noEmit",
+    "test": "jest --passWithNoTests",
+    "test:ci": "yarn lint && yarn type-check && yarn test",
+    "prebuild": "yarn test:ci",
+    "build": "tsc -p tsconfig.dist.json --declaration",
+    "prepack": "yarn build"
+  },
+  "dependencies": {
+    "@jupiterone/integration-sdk": "^1.0.1"
+  },
+  "devDependencies": {
+    "@jupiterone/integration-sdk-dev-tools": "^1.0.1",
+    "@jupiterone/integration-sdk-testing": "^1.0.1"
+  }
+}
