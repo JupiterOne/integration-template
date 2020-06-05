@@ -20,8 +20,8 @@ have `yarn` installed, you can install dependencies by running `yarn`.
 #### Loading credentials
 
 Create a `.env` file at the root of this project and add environment variables
-to match what is in `src/instanceConfigFields.ts`. The `.env` file is ignored
-by git, so you won't have to worry about accidentally pushing credentials.
+to match what is in `src/instanceConfigFields.ts`. The `.env` file is ignored by
+git, so you won't have to worry about accidentally pushing credentials.
 
 Given this example configuration:
 
@@ -64,7 +64,7 @@ will load in your configuration from `src/index.ts`.
 ### Development
 
 Please reference the JupiterOne integration
-[development documentation](https://github.com/JupiterOne/sdk/blob/master/docs/integration/development.md)
+[development documentation](https://github.com/JupiterOne/sdk/blob/master/docs/integrations/development.md)
 for more information on how to use the SDK.
 
 See [docs/development.md](docs/development.md) for details about how to get
