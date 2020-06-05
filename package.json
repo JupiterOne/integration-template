@@ -23,10 +23,11 @@
     "prepush": "yarn lint && yarn type-check && jest --changedSince master",
     "prepack": "yarn build"
   },
-  "dependencies": {
-    "@jupiterone/integration-sdk": "^1.1.0"
+  "peerDependencies": {
+    "@jupiterone/integration-sdk-core": "^1.1.0"
   },
   "devDependencies": {
+    "@jupiterone/integration-sdk-core": "^1.1.0",
     "@jupiterone/integration-sdk-dev-tools": "^1.1.0",
     "@jupiterone/integration-sdk-testing": "^1.1.0"
   }
