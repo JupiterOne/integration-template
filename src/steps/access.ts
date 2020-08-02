@@ -2,9 +2,9 @@ import {
   createDirectRelationship,
   createIntegrationEntity,
   Entity,
+  generateRelationshipType,
   IntegrationStep,
   IntegrationStepExecutionContext,
-  generateRelationshipType,
 } from '@jupiterone/integration-sdk-core';
 
 import { createAPIClient } from '../client';
@@ -43,6 +43,52 @@ export async function fetchUsers({
   });
 }
 
+export async function fetchGroups({
+  instance,
+  jobState,
+}: IntegrationStepExecutionContext<IntegrationConfig>) {
+  const apiClient = createAPIClient(instance.config);
+
+  const accountEntity = (await jobState.getData(ACCOUNT_ENTITY_KEY)) as Entity;
+
+  await apiClient.iterateGroups(async (group) => {
+    const groupEntity = createIntegrationEntity({
+      entityData: {
+        source: group,
+        assign: {
+          _type: 'acme_group',
+          _class: 'UserGroup',
+        },
+      },
+    });
+
+    await Promise.all([
+      jobState.addEntity(groupEntity),
+      jobState.addRelationship(
+        createDirectRelationship({
+          _class: 'HAS',
+          from: accountEntity,
+          to: groupEntity,
+        }),
+      ),
+    ]);
+
+    for (const user of group.users || []) {
+      const userEntity = await jobState.getEntity({
+        _type: 'acme_user',
+        _key: user.id,
+      });
+      await jobState.addRelationship(
+        createDirectRelationship({
+          _class: 'HAS',
+          from: groupEntity,
+          to: userEntity,
+        }),
+      );
+    }
+  });
+}
+
 export const accessSteps: IntegrationStep<IntegrationConfig>[] = [
   {
     id: 'fetch-users',
@@ -50,6 +96,8 @@ export const accessSteps: IntegrationStep<IntegrationConfig>[] = [
     types: [
       'acme_user',
       generateRelationshipType('HAS', 'acme_account', 'acme_user'),
+      generateRelationshipType('HAS', 'acme_account', 'acme_group'),
+      generateRelationshipType('HAS', 'acme_group', 'acme_user'),
     ],
     dependsOn: ['fetch-account'],
     executionHandler: fetchUsers,
