@@ -26,6 +26,11 @@ export async function fetchUsers({
         assign: {
           _type: 'acme_user',
           _class: 'User',
+          username: 'testusername',
+          email: 'test@test.com',
+          // This is a custom property that is not a part of the data model class
+          // hierarchy. See: https://github.com/JupiterOne/data-model/blob/master/src/schemas/User.json
+          firstName: 'John',
         },
       },
     });
@@ -58,6 +63,10 @@ export async function fetchGroups({
         assign: {
           _type: 'acme_group',
           _class: 'UserGroup',
+          email: 'testgroup@test.com',
+          // This is a custom property that is not a part of the data model class
+          // hierarchy. See: https://github.com/JupiterOne/data-model/blob/master/src/schemas/UserGroup.json
+          logoLink: 'https://test.com/logo.png',
         },
       },
     });

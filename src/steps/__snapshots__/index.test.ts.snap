@@ -21,6 +21,8 @@ Object {
       "createdOn": undefined,
       "displayName": "Example Co. Acme Account",
       "id": "acme-unique-account-id",
+      "manager": "Manager Name",
+      "mfaEnabled": true,
       "name": "Example Co. Acme Account",
     },
     Object {
@@ -40,8 +42,11 @@ Object {
       "_type": "acme_user",
       "createdOn": undefined,
       "displayName": "User One",
+      "email": "test@test.com",
+      "firstName": "John",
       "id": "acme-user-1",
       "name": "User One",
+      "username": "testusername",
     },
     Object {
       "_class": Array [
@@ -60,8 +65,11 @@ Object {
       "_type": "acme_user",
       "createdOn": undefined,
       "displayName": "User Two",
+      "email": "test@test.com",
+      "firstName": "John",
       "id": "acme-user-2",
       "name": "User Two",
+      "username": "testusername",
     },
     Object {
       "_class": Array [
@@ -85,7 +93,9 @@ Object {
       "_type": "acme_group",
       "createdOn": undefined,
       "displayName": "Group One",
+      "email": "testgroup@test.com",
       "id": "acme-group-1",
+      "logoLink": "https://test.com/logo.png",
       "name": "Group One",
     },
   ],
@@ -131,5 +141,7 @@ Object {
     "acme_account_has_group",
     "acme_group_has_user",
   ],
+  "numCollectedEntities": 4,
+  "numCollectedRelationships": 4,
 }
 `;
