@@ -21,6 +21,10 @@ export async function fetchAccountDetails({
         _key: 'acme-unique-account-id',
         _type: 'acme_account',
         _class: 'Account',
+        mfaEnabled: true,
+        // This is a custom property that is not a part of the data model class
+        // hierarchy. See: https://github.com/JupiterOne/data-model/blob/master/src/schemas/Account.json
+        manager: 'Manager Name',
       },
     },
   });

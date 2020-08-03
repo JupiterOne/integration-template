@@ -17,18 +17,18 @@
     "lint": "eslint . --cache --fix --ext .ts,.tsx",
     "format": "prettier --write '**/*.{ts,js,json,css,md,yml}'",
     "type-check": "tsc",
-    "test": "jest --passWithNoTests",
+    "test": "jest",
     "test:ci": "yarn lint && yarn type-check && yarn test",
     "build": "tsc -p tsconfig.dist.json --declaration",
     "prepush": "yarn lint && yarn type-check && jest --changedSince master",
     "prepack": "yarn build"
   },
   "peerDependencies": {
-    "@jupiterone/integration-sdk-core": "^2.6.0"
+    "@jupiterone/integration-sdk-core": "^2.8.0"
   },
   "devDependencies": {
-    "@jupiterone/integration-sdk-core": "^2.6.0",
-    "@jupiterone/integration-sdk-dev-tools": "^2.6.0",
-    "@jupiterone/integration-sdk-testing": "^2.6.0"
+    "@jupiterone/integration-sdk-core": "^2.8.0",
+    "@jupiterone/integration-sdk-dev-tools": "^2.8.0",
+    "@jupiterone/integration-sdk-testing": "^2.8.0"
   }
 }
