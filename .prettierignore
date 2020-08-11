@@ -1,1 +1,3 @@
 dist
+coverage/
+.j1-integration
