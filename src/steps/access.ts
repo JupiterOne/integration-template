@@ -2,9 +2,10 @@ import {
   createDirectRelationship,
   createIntegrationEntity,
   Entity,
-  generateRelationshipType,
   IntegrationStep,
   IntegrationStepExecutionContext,
+  RelationshipClass,
+  IntegrationMissingKeyError,
 } from '@jupiterone/integration-sdk-core';
 
 import { createAPIClient } from '../client';
@@ -39,7 +40,7 @@ export async function fetchUsers({
       jobState.addEntity(userEntity),
       jobState.addRelationship(
         createDirectRelationship({
-          _class: 'HAS',
+          _class: RelationshipClass.HAS,
           from: accountEntity,
           to: userEntity,
         }),
@@ -75,7 +76,7 @@ export async function fetchGroups({
       jobState.addEntity(groupEntity),
       jobState.addRelationship(
         createDirectRelationship({
-          _class: 'HAS',
+          _class: RelationshipClass.HAS,
           from: accountEntity,
           to: groupEntity,
         }),
@@ -83,13 +84,17 @@ export async function fetchGroups({
     ]);
 
     for (const user of group.users || []) {
-      const userEntity = await jobState.getEntity({
-        _type: 'acme_user',
-        _key: user.id,
-      });
+      const userEntity = await jobState.findEntity(user.id);
+
+      if (!userEntity) {
+        throw new IntegrationMissingKeyError(
+          `Expected user with key to exist (key=${user.id})`,
+        );
+      }
+
       await jobState.addRelationship(
         createDirectRelationship({
-          _class: 'HAS',
+          _class: RelationshipClass.HAS,
           from: groupEntity,
           to: userEntity,
         }),
@@ -102,11 +107,32 @@ export const accessSteps: IntegrationStep<IntegrationConfig>[] = [
   {
     id: 'fetch-users',
     name: 'Fetch Users',
-    types: [
-      'acme_user',
-      generateRelationshipType('HAS', 'acme_account', 'acme_user'),
-      generateRelationshipType('HAS', 'acme_account', 'acme_group'),
-      generateRelationshipType('HAS', 'acme_group', 'acme_user'),
+    entities: [
+      {
+        resourceName: 'Account',
+        _type: 'acme_account',
+        _class: 'Account',
+      },
+    ],
+    relationships: [
+      {
+        _type: 'acme_account_has_user',
+        _class: RelationshipClass.HAS,
+        sourceType: 'acme_account',
+        targetType: 'acme_user',
+      },
+      {
+        _type: 'acme_account_has_group',
+        _class: RelationshipClass.HAS,
+        sourceType: 'acme_account',
+        targetType: 'acme_group',
+      },
+      {
+        _type: 'acme_group_has_user',
+        _class: RelationshipClass.HAS,
+        sourceType: 'acme_group',
+        targetType: 'acme_user',
+      },
     ],
     dependsOn: ['fetch-account'],
     executionHandler: fetchUsers,

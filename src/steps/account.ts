@@ -39,7 +39,14 @@ export const accountSteps: IntegrationStep<IntegrationConfig>[] = [
   {
     id: 'fetch-account',
     name: 'Fetch Account Details',
-    types: ['acme_account'],
+    entities: [
+      {
+        resourceName: 'Account',
+        _type: 'acme_account',
+        _class: 'Account',
+      },
+    ],
+    relationships: [],
     dependsOn: [],
     executionHandler: fetchAccountDetails,
   },
