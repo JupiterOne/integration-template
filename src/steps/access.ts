@@ -21,31 +21,30 @@ export async function fetchUsers({
   const accountEntity = (await jobState.getData(ACCOUNT_ENTITY_KEY)) as Entity;
 
   await apiClient.iterateUsers(async (user) => {
-    const userEntity = createIntegrationEntity({
-      entityData: {
-        source: user,
-        assign: {
-          _type: 'acme_user',
-          _class: 'User',
-          username: 'testusername',
-          email: 'test@test.com',
-          // This is a custom property that is not a part of the data model class
-          // hierarchy. See: https://github.com/JupiterOne/data-model/blob/master/src/schemas/User.json
-          firstName: 'John',
+    const userEntity = await jobState.addEntity(
+      createIntegrationEntity({
+        entityData: {
+          source: user,
+          assign: {
+            _type: 'acme_user',
+            _class: 'User',
+            username: 'testusername',
+            email: 'test@test.com',
+            // This is a custom property that is not a part of the data model class
+            // hierarchy. See: https://github.com/JupiterOne/data-model/blob/master/src/schemas/User.json
+            firstName: 'John',
+          },
         },
-      },
-    });
+      }),
+    );
 
-    await Promise.all([
-      jobState.addEntity(userEntity),
-      jobState.addRelationship(
-        createDirectRelationship({
-          _class: RelationshipClass.HAS,
-          from: accountEntity,
-          to: userEntity,
-        }),
-      ),
-    ]);
+    await jobState.addRelationship(
+      createDirectRelationship({
+        _class: RelationshipClass.HAS,
+        from: accountEntity,
+        to: userEntity,
+      }),
+    );
   });
 }
 
@@ -58,30 +57,29 @@ export async function fetchGroups({
   const accountEntity = (await jobState.getData(ACCOUNT_ENTITY_KEY)) as Entity;
 
   await apiClient.iterateGroups(async (group) => {
-    const groupEntity = createIntegrationEntity({
-      entityData: {
-        source: group,
-        assign: {
-          _type: 'acme_group',
-          _class: 'UserGroup',
-          email: 'testgroup@test.com',
-          // This is a custom property that is not a part of the data model class
-          // hierarchy. See: https://github.com/JupiterOne/data-model/blob/master/src/schemas/UserGroup.json
-          logoLink: 'https://test.com/logo.png',
+    const groupEntity = await jobState.addEntity(
+      createIntegrationEntity({
+        entityData: {
+          source: group,
+          assign: {
+            _type: 'acme_group',
+            _class: 'UserGroup',
+            email: 'testgroup@test.com',
+            // This is a custom property that is not a part of the data model class
+            // hierarchy. See: https://github.com/JupiterOne/data-model/blob/master/src/schemas/UserGroup.json
+            logoLink: 'https://test.com/logo.png',
+          },
         },
-      },
-    });
+      }),
+    );
 
-    await Promise.all([
-      jobState.addEntity(groupEntity),
-      jobState.addRelationship(
-        createDirectRelationship({
-          _class: RelationshipClass.HAS,
-          from: accountEntity,
-          to: groupEntity,
-        }),
-      ),
-    ]);
+    await jobState.addRelationship(
+      createDirectRelationship({
+        _class: RelationshipClass.HAS,
+        from: accountEntity,
+        to: groupEntity,
+      }),
+    );
 
     for (const user of group.users || []) {
       const userEntity = await jobState.findEntity(user.id);
