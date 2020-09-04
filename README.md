@@ -14,8 +14,9 @@ using a version manager like [fnm](https://github.com/Schniz/fnm) or
 
 #### Installing dependencies
 
-From the root of this project, run `npm install` to install dependencies. If you
-have `yarn` installed, you can install dependencies by running `yarn`.
+First, you'll need to
+[install `yarn`](https://yarnpkg.com/getting-started/install). Then, from the
+root of this project, run `yarn install` to install dependencies.
 
 #### Loading credentials
 
