@@ -18,7 +18,14 @@ First, you'll need to
 [install `yarn`](https://yarnpkg.com/getting-started/install). Then, from the
 root of this project, run `yarn install` to install dependencies.
 
-#### Loading credentials
+#### Loading configuration
+
+An integration executes against a configuration that provides credentials and
+any other information necessary to ingest data from the provider. The
+configuration fields are defined in `src/instanceConfigFields.ts` while the
+configuration values are stored in a `.env` file at the root of this project.
+This allows the integration to automatically load the field values and complain
+when they're not provided.
 
 Create a `.env` file at the root of this project and add environment variables
 to match what is in `src/instanceConfigFields.ts`. The `.env` file is ignored by
