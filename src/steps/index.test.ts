@@ -32,11 +32,11 @@ test('should collect data', async () => {
     encounteredTypes: context.jobState.encounteredTypes,
   }).toMatchSnapshot();
 
-  expect(
-    context.jobState.collectedEntities.filter((e) =>
-      e._class.includes('Account'),
-    ),
-  ).toMatchGraphObjectSchema({
+  const accounts = context.jobState.collectedEntities.filter((e) =>
+    e._class.includes('Account'),
+  );
+  expect(accounts.length).toBeGreaterThan(0);
+  expect(accounts).toMatchGraphObjectSchema({
     _class: ['Account'],
     schema: {
       additionalProperties: false,
@@ -52,9 +52,11 @@ test('should collect data', async () => {
     },
   });
 
-  expect(
-    context.jobState.collectedEntities.filter((e) => e._class.includes('User')),
-  ).toMatchGraphObjectSchema({
+  const users = context.jobState.collectedEntities.filter((e) =>
+    e._class.includes('User'),
+  );
+  expect(users.length).toBeGreaterThan(0);
+  expect(users).toMatchGraphObjectSchema({
     _class: ['User'],
     schema: {
       additionalProperties: false,
@@ -70,11 +72,11 @@ test('should collect data', async () => {
     },
   });
 
-  expect(
-    context.jobState.collectedEntities.filter((e) =>
-      e._class.includes('UserGroup'),
-    ),
-  ).toMatchGraphObjectSchema({
+  const userGroups = context.jobState.collectedEntities.filter((e) =>
+    e._class.includes('UserGroup'),
+  );
+  expect(userGroups.length).toBeGreaterThan(0);
+  expect(userGroups).toMatchGraphObjectSchema({
     _class: ['UserGroup'],
     schema: {
       additionalProperties: false,
