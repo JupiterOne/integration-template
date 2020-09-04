@@ -17,7 +17,14 @@ using a version manager like [fnm](https://github.com/Schniz/fnm) or
 From the root of this project, run `npm install` to install dependencies. If you
 have `yarn` installed, you can install dependencies by running `yarn`.
 
-#### Loading credentials
+#### Loading configuration
+
+An integration executes against a configuration that provides credentials and
+any other information necessary to ingest data from the provider. The
+configuration fields are defined in `src/instanceConfigFields.ts` while the
+configuration values are stored in a `.env` file at the root of this project.
+This allows the integration to automatically load the field values and complain
+when they're not provided.
 
 Create a `.env` file at the root of this project and add environment variables
 to match what is in `src/instanceConfigFields.ts`. The `.env` file is ignored by
