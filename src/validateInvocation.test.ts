@@ -15,11 +15,9 @@ it('requires valid config', async () => {
     instanceConfig: {} as IntegrationConfig,
   });
 
-  try {
-    await validateInvocation(executionContext);
-  } catch (e) {
-    expect(e instanceof IntegrationValidationError).toBe(true);
-  }
+  await expect(validateInvocation(executionContext)).rejects.toThrow(
+    IntegrationValidationError,
+  );
 });
 
 it('auth error', async () => {
@@ -39,9 +37,7 @@ it('auth error', async () => {
     },
   });
 
-  try {
-    await validateInvocation(executionContext);
-  } catch (e) {
-    expect(e instanceof IntegrationProviderAuthenticationError).toBe(true);
-  }
+  await expect(validateInvocation(executionContext)).rejects.toThrow(
+    IntegrationProviderAuthenticationError,
+  );
 });
