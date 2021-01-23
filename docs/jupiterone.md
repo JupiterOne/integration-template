@@ -1,22 +1,63 @@
 # Integration with JupiterOne
 
-## Setup
+## {{provider}} + JupiterOne Integration Benefits
 
-In this section, please provide details about how to set up the integration with
-JupiterOne. This may require provisioning some resources on the provider's side
-(perhaps a role, app, or api key) and passing information over to JupiterOne.
+- TODO: Iterate the benefits of ingesting data from the provider into JupiterOne. Use an active voice.
+- Visualize {{provider}} services, teams, and users in the JupiterOne graph.
+- Map {{provider}} users to employees in your JupiterOne account.
+- Monitor changes to {{provider}} users using JupiterOne alerts.
 
-## Data Model
+## How it Works
 
-Provide an overview here of the resources collected from the integration. Please
-provide a mapping of how the resources collected map to the JupiterOne Data
-Model. The tables below were taken from the Azure integration to provide an
-example of how to display that information.
+- TODO: Update this list as appropriate. Indicate the significant activities the
+  integration enables.
+- JupiterOne periodically fetches services, teams, and users from {{provider}} to
+  update the graph.
+- Write JupiterOne queries to review and monitor updates to the graph.
+- Configure alerts to take action when JupiterOne graph changes.
 
-When you start developing an integration, please clear out the tables below. As
-you add support for new entities and relationships, please update the tables and
-document the addition in the [CHANGELOG.md](../CHANGELOG.md) file at the root of
-the project.
+## Requirements
+
+- TODO: Update this list as appropriate.
+- JupiterOne requires a REST API key.
+
+## Support
+
+If you need help with this integration, please contact
+[JupiterOne Support](https://support.jupiterone.io).
+
+## Integration Walkthrough
+
+### In {{provider}}
+
+- TODO: Update this list of steps as appropriate. Remove the section when there
+  are no steps in the provider.
+- [Generate a REST API key](https://example.com/docs/generating-api-keys)
+
+### In JupiterOne
+
+0. TODO: Update this list of steps as appropriate. Include permissions requirements
+   when appropriates.
+1. From the configuration **Gear Icon**, select **Integrations**.
+2. Scroll to the **{{provider}}** integration tile and click it.
+3. Click the **Add Configuration** button.
+4. Enter the **Account Name** by which you'd like to identify this {{provider}}
+   account in JupiterOne. Ingested entities will have this value stored in
+   `tag.AccountName` when **Tag with Account Name** is checked.
+5. Enter a **Description** that will further assist your team when identifying
+   the integration instance.
+6. Select a **Polling Interval** that you feel is sufficient for your monitoring
+   needs. You may leave this as `DISABLED` and manually execute the integration.
+7. Enter the **{{provider}} API Key** generated for use by JupiterOne.
+8. Click **Create Configuration** once all values are provided.
+
+# How to Uninstall
+
+1. From the configuration **Gear Icon**, select **Integrations**.
+2. Scroll to the **{{provider}}** integration tile and click it.
+3. Identify and click the **integration to delete**.
+4. Click the **trash can** icon.
+5. Click the **Remove** button to delete the integration.
 
 <!-- {J1_DOCUMENTATION_MARKER_START} -->
 <!--
