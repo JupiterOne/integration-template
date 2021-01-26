@@ -2,24 +2,33 @@
 
 ## {{provider}} + JupiterOne Integration Benefits
 
-- TODO: Iterate the benefits of ingesting data from the provider into JupiterOne. Use an active voice.
+TODO: Iterate the benefits of ingesting data from the provider into JupiterOne.
+Consider the following examples:
+
 - Visualize {{provider}} services, teams, and users in the JupiterOne graph.
 - Map {{provider}} users to employees in your JupiterOne account.
 - Monitor changes to {{provider}} users using JupiterOne alerts.
 
 ## How it Works
 
-- TODO: Update this list as appropriate. Indicate the significant activities the
-  integration enables.
-- JupiterOne periodically fetches services, teams, and users from {{provider}} to
-  update the graph.
+TODO: Iterate significant activities the integration enables. Consider the
+following examples:
+
+- JupiterOne periodically fetches services, teams, and users from {{provider}}
+  to update the graph.
 - Write JupiterOne queries to review and monitor updates to the graph.
 - Configure alerts to take action when JupiterOne graph changes.
 
 ## Requirements
 
-- TODO: Update this list as appropriate.
-- JupiterOne requires a REST API key.
+TODO: Iterate requirements for setting up the integration. Consider the
+following examples:
+
+- {{provider}} supports the OAuth2 Client Credential flow. You must have a
+  Administrator user account.
+- JupiterOne requires a REST API key. You need permission to create a user in
+  {{provider}} that will be used to obtain the API key.
+- You must have permission in JupiterOne to install new integrations.
 
 ## Support
 
@@ -30,14 +39,16 @@ If you need help with this integration, please contact
 
 ### In {{provider}}
 
-- TODO: Update this list of steps as appropriate. Remove the section when there
-  are no steps in the provider.
-- [Generate a REST API key](https://example.com/docs/generating-api-keys)
+TODO: List specific actions that must be taken in the provider. Remove this
+section when there are no actions to take in the provider.
+
+1. [Generate a REST API key](https://example.com/docs/generating-api-keys)
 
 ### In JupiterOne
 
-0. TODO: Update this list of steps as appropriate. Include permissions requirements
-   when appropriates.
+TODO: List specific actions that must be taken in JupiterOne. Many of the
+following steps will be reusable; take care to be sure they remain accurate.
+
 1. From the configuration **Gear Icon**, select **Integrations**.
 2. Scroll to the **{{provider}}** integration tile and click it.
 3. Click the **Add Configuration** button.
@@ -52,6 +63,10 @@ If you need help with this integration, please contact
 8. Click **Create Configuration** once all values are provided.
 
 # How to Uninstall
+
+TODO: List specific actions that must be taken to uninstall the integration.
+Many of the following steps will be reusable; take care to be sure they remain
+accurate.
 
 1. From the configuration **Gear Icon**, select **Integrations**.
 2. Scroll to the **{{provider}}** integration tile and click it.
