@@ -101,8 +101,8 @@ The following relationships are created/mapped:
 
 | Source Entity `_type` | Relationship `_class` | Target Entity `_type` |
 | --------------------- | --------------------- | --------------------- |
-| `acme_account`        | **HAS**               | `acme_user`           |
 | `acme_account`        | **HAS**               | `acme_group`          |
+| `acme_account`        | **HAS**               | `acme_user`           |
 | `acme_group`          | **HAS**               | `acme_user`           |
 
 <!--
