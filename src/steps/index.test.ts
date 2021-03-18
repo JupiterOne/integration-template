@@ -1,6 +1,6 @@
 import { createMockStepExecutionContext } from '@jupiterone/integration-sdk-testing';
 
-import { IntegrationConfig } from '../types';
+import { IntegrationConfig } from '../config';
 import { fetchGroups, fetchUsers } from './access';
 import { fetchAccountDetails } from './account';
 
