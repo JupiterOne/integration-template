@@ -2,7 +2,7 @@ import http from 'http';
 
 import { IntegrationProviderAuthenticationError } from '@jupiterone/integration-sdk-core';
 
-import { IntegrationConfig } from './types';
+import { IntegrationConfig } from './config';
 
 export type ResourceIteratee<T> = (each: T) => Promise<void> | void;
 
@@ -47,7 +47,7 @@ export class APIClient {
     // TODO make the most light-weight request possible to validate
     // authentication works with the provided credentials, throw an err if
     // authentication fails
-    const request = new Promise((resolve, reject) => {
+    const request = new Promise<void>((resolve, reject) => {
       http.get(
         {
           hostname: 'localhost',

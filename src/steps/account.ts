@@ -4,7 +4,7 @@ import {
   IntegrationStepExecutionContext,
 } from '@jupiterone/integration-sdk-core';
 
-import { IntegrationConfig } from '../types';
+import { IntegrationConfig } from '../config';
 
 export const ACCOUNT_ENTITY_KEY = 'entity:account';
 
