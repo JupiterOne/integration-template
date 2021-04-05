@@ -16,8 +16,8 @@ following examples:
 
 - JupiterOne periodically fetches services, teams, and users from {{provider}}
   to update the graph.
-- Write JupiterOne queries to review and monitor updates to the graph.
-- Configure alerts to take action when JupiterOne graph changes.
+- Write JupiterOne queries to review and monitor updates to the graph, or leverage existing queries.
+- Configure alerts to take action when JupiterOne graph changes, or leverage existing alerts.
 
 ## Requirements
 
