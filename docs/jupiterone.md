@@ -51,16 +51,17 @@ following steps will be reusable; take care to be sure they remain accurate.
 
 1. From the configuration **Gear Icon**, select **Integrations**.
 2. Scroll to the **{{provider}}** integration tile and click it.
-3. Click the **Add Configuration** button.
-4. Enter the **Account Name** by which you'd like to identify this {{provider}}
+3. Click the **Add Configuration** button and configure the following settings:
+- Enter the **Account Name** by which you'd like to identify this {{provider}}
    account in JupiterOne. Ingested entities will have this value stored in
    `tag.AccountName` when **Tag with Account Name** is checked.
-5. Enter a **Description** that will further assist your team when identifying
+- Enter a **Description** that will further assist your team when identifying
    the integration instance.
-6. Select a **Polling Interval** that you feel is sufficient for your monitoring
+- Select a **Polling Interval** that you feel is sufficient for your monitoring
    needs. You may leave this as `DISABLED` and manually execute the integration.
-7. Enter the **{{provider}} API Key** generated for use by JupiterOne.
-8. Click **Create Configuration** once all values are provided.
+- {{additional provider-specific settings}} Enter the **{{provider}} API Key** 
+generated for use by JupiterOne.
+4. Click **Create Configuration** once all values are provided.
 
 # How to Uninstall
 
