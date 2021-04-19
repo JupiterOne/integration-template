@@ -24,5 +24,5 @@ for new developers picking up your work.
 
 Supply details here for information on how to authenticate with a provider so
 that developers have an idea of what's needed to hit APIs. It may be useful to
-provide explanations for each value specified in
-[../src/instanceConfigFields.json](../src/instanceConfigFields.json).
+provide explanations for each value specified in the
+[`IntegrationInstanceConfigFieldMap`](../src/config.ts).
