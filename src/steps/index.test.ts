@@ -3,14 +3,7 @@ import { createMockStepExecutionContext } from '@jupiterone/integration-sdk-test
 import { IntegrationConfig } from '../config';
 import { fetchGroups, fetchUsers } from './access';
 import { fetchAccountDetails } from './account';
-
-const DEFAULT_CLIENT_ID = 'dummy-acme-client-id';
-const DEFAULT_CLIENT_SECRET = 'dummy-acme-client-secret';
-
-const integrationConfig: IntegrationConfig = {
-  clientId: process.env.CLIENT_ID || DEFAULT_CLIENT_ID,
-  clientSecret: process.env.CLIENT_SECRET || DEFAULT_CLIENT_SECRET,
-};
+import { integrationConfig } from '../../test/config';
 
 test('should collect data', async () => {
   const context = createMockStepExecutionContext<IntegrationConfig>({
