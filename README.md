@@ -18,11 +18,17 @@ with JupiterOne in the [integration documentation](docs/jupiterone.md).
 5. `cp .env.example .env` and add necessary values for runtime configuration.
 
    When an integration executes, it needs API credentials and any other
-   configuration parameters necessary for fetching data from the provider. The
-   names of these parameters are defined in `src/instanceConfigFields.ts`. When
-   executed in a development environment, values for these parameters are read
-   from Node's `process.env`, loaded from `.env`. That file has been added to
-   `.gitignore` to avoid commiting credentials.
+   configuration parameters necessary for its work (provider API credentials,
+   data ingestion parameters, etc.). The names of these parameters are defined
+   by the `IntegrationInstanceConfigFieldMap`in `src/config.ts`. When the
+   integration is executed outside the JupiterOne managed environment (local
+   development or on-prem), values for these parameters are read from Node's
+   `process.env` by converting config field names to constant case. For example,
+   `clientId` is read from `process.env.CLIENT_ID`.
+   
+   The `.env` file is loaded into `process.env` before the integration code is
+   executed. This file is not required should you configure the environment
+   another way. `.gitignore` is configured to to avoid commiting the `.env` file.
 
 ### Running the integration
 
