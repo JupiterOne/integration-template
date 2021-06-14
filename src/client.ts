@@ -3,21 +3,9 @@ import http from 'http';
 import { IntegrationProviderAuthenticationError } from '@jupiterone/integration-sdk-core';
 
 import { IntegrationConfig } from './config';
+import { AcmeUser, AcmeGroup } from './types';
 
 export type ResourceIteratee<T> = (each: T) => Promise<void> | void;
-
-// Providers often supply types with their API libraries.
-
-type AcmeUser = {
-  id: string;
-  name: string;
-};
-
-type AcmeGroup = {
-  id: string;
-  name: string;
-  users?: Pick<AcmeUser, 'id'>[];
-};
 
 // Those can be useful to a degree, but often they're just full of optional
 // values. Understanding the response data may be more reliably accomplished by
