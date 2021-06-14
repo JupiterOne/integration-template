@@ -3,10 +3,7 @@ import {
   Entity,
 } from '@jupiterone/integration-sdk-core';
 
-const USER_LOGIN_PREFIX = 'salesforce-user';
-export function createUserEntityIdentifier(login: string): string {
-  return `${USER_LOGIN_PREFIX}:${login}`;
-}
+import { Steps, Entities } from '../constants';
 
 export function createAccountEntity(): Entity {
   return createIntegrationEntity({
@@ -17,8 +14,8 @@ export function createAccountEntity(): Entity {
       },
       assign: {
         _key: 'acme-unique-account-id',
-        _type: 'acme_account',
-        _class: 'Account',
+        _type: Entities.ACCOUNT._type,
+        _class: Entities.ACCOUNT._class,
         mfaEnabled: true,
         // This is a custom property that is not a part of the data model class
         // hierarchy. See: https://github.com/JupiterOne/data-model/blob/master/src/schemas/Account.json

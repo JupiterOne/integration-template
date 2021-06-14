@@ -1,4 +1,8 @@
-import { RelationshipClass } from '@jupiterone/integration-sdk-core';
+import {
+  RelationshipClass,
+  StepEntityMetadata,
+  StepRelationshipMetadata,
+} from '@jupiterone/integration-sdk-core';
 
 export const Steps = {
   ACCOUNTS: 'fetch-accounts',
@@ -6,7 +10,10 @@ export const Steps = {
   USERS: 'fetch-users',
 };
 
-export const Entities = {
+export const Entities: Record<
+  'ACCOUNT' | 'GROUP' | 'USER',
+  StepEntityMetadata
+> = {
   ACCOUNT: {
     resourceName: 'Account',
     _type: 'acme_account',
@@ -24,7 +31,10 @@ export const Entities = {
   },
 };
 
-export const Relationships = {
+export const Relationships: Record<
+  'ACCOUNT_HAS_USER' | 'ACCOUNT_HAS_GROUP' | 'GROUP_HAS_USER',
+  StepRelationshipMetadata
+> = {
   ACCOUNT_HAS_USER: {
     _type: 'acme_account_has_user',
     sourceType: Entities.ACCOUNT._type,

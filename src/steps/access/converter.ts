@@ -9,11 +9,6 @@ import {
 import { Entities } from '../constants';
 import { AcmeGroup, AcmeUser } from '../../types';
 
-const USER_LOGIN_PREFIX = 'salesforce-user';
-export function createUserEntityIdentifier(login: string): string {
-  return `${USER_LOGIN_PREFIX}:${login}`;
-}
-
 export function createUserEntity(user: AcmeUser): Entity {
   return createIntegrationEntity({
     entityData: {
