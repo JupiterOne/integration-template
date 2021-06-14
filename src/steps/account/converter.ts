@@ -3,7 +3,7 @@ import {
   Entity,
 } from '@jupiterone/integration-sdk-core';
 
-import { Steps, Entities } from '../constants';
+import { Entities } from '../constants';
 
 export function createAccountEntity(): Entity {
   return createIntegrationEntity({
