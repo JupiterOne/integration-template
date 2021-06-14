@@ -1,5 +1,4 @@
 import {
-  createIntegrationEntity,
   IntegrationStep,
   IntegrationStepExecutionContext,
 } from '@jupiterone/integration-sdk-core';

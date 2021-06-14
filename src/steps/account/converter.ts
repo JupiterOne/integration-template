@@ -3,9 +3,6 @@ import {
   Entity,
 } from '@jupiterone/integration-sdk-core';
 
-import { Entities } from '../constants';
-import { StandardSchema } from 'jsforce';
-
 const USER_LOGIN_PREFIX = 'salesforce-user';
 export function createUserEntityIdentifier(login: string): string {
   return `${USER_LOGIN_PREFIX}:${login}`;
