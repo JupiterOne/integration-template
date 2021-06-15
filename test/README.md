@@ -33,7 +33,7 @@ However, there is a good chance that something more sophisticated will be
 needed. Many APIs return secrets in the content of the response, which means it
 is necessary to unzip that content, parse it, and modify the properties of
 returned objects before saving them in the recording. You can see a commented
-version of a more sophistcated redaction routine in `test/recording.ts`.
+version of a more sophisticated redaction routine in `test/recording.ts`.
 
 Once recording is enabled, but _BEFORE_ committing the recording files via git,
 examine the recording file(s) for secrets. Then modify `test/recording.ts`
