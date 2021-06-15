@@ -26,8 +26,7 @@ export async function fetchUsers({
   const accountEntity = (await jobState.getData(ACCOUNT_ENTITY_KEY)) as Entity;
 
   await apiClient.iterateUsers(async (user) => {
-    const userEntity = createUserEntity(user);
-    await jobState.addEntity(userEntity);
+    const userEntity = await jobState.addEntity(createUserEntity(user));
     await jobState.addRelationship(
       createAccountUserRelationship(accountEntity, userEntity),
     );
@@ -69,13 +68,7 @@ export const accessSteps: IntegrationStep<IntegrationConfig>[] = [
   {
     id: Steps.USERS,
     name: 'Fetch Users',
-    entities: [
-      {
-        resourceName: Entities.ACCOUNT.resourceName,
-        _type: Entities.ACCOUNT._type,
-        _class: Entities.ACCOUNT._class,
-      },
-    ],
+    entities: [Entities.ACCOUNT],
     relationships: [
       Relationships.ACCOUNT_HAS_USER,
       Relationships.ACCOUNT_HAS_GROUP,
