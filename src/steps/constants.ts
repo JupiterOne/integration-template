@@ -5,7 +5,7 @@ import {
 } from '@jupiterone/integration-sdk-core';
 
 export const Steps = {
-  ACCOUNTS: 'fetch-accounts',
+  ACCOUNT: 'fetch-account',
   GROUPS: 'fetch-groups',
   USERS: 'fetch-users',
 };

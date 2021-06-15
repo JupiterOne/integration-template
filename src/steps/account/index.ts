@@ -19,7 +19,7 @@ export async function fetchAccountDetails({
 
 export const accountSteps: IntegrationStep<IntegrationConfig>[] = [
   {
-    id: Steps.ACCOUNTS,
+    id: Steps.ACCOUNT,
     name: 'Fetch Account Details',
     entities: [Entities.ACCOUNT],
     relationships: [],
