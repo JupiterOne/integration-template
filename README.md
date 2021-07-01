@@ -3,6 +3,10 @@
 Learn about the data ingested, benefits of this integration, and how to use it
 with JupiterOne in the [integration documentation](docs/jupiterone.md).
 
+Submit requests for additional resource ingestion or bug reports to our
+[Integration Issues](https://github.com/JupiterOne/integrations/issues)
+repository.
+
 ## Development
 
 ### Prerequisites
