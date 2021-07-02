@@ -1,21 +1,19 @@
 name: Build
-on: [push, pull_request]
+on: 
+  pull_request:
+  push:
+    branches:
+      - master
 
 jobs:
   test:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        node-version: [14.x]
-        os: [ubuntu-latest]
-
+    runs-on: ubuntu-latest
     steps:
       - id: setup-node
         name: Setup Node
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 14.x
 
       - name: Check out code repository source code
         uses: actions/checkout@v2
@@ -35,11 +33,6 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
-    strategy:
-      fail-fast: false
-      matrix:
-        node: [14]
-
     steps:
       - name: Setup Node
         uses: actions/setup-node@v1
