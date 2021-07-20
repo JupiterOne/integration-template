@@ -7,7 +7,7 @@ import { IntegrationConfig } from '../config';
 import { buildGroupUserRelationships, fetchGroups, fetchUsers } from './access';
 import { fetchAccountDetails } from './account';
 import { integrationConfig } from '../../test/config';
-import { setupProjectRecording } from '../../test/recording';
+//import { setupProjectRecording } from '../../test/recording';
 
 /* uncomment when ready. See test/README.md for details
 let recording: Recording;
