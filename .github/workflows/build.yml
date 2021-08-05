@@ -53,6 +53,7 @@ jobs:
           then
             echo "Found version commit tag. Publishing."
             echo "publish=true" >> $GITHUB_ENV
+            echo "VERSION_NUM=`echo $(git describe --tags --abbrev=0 | sed -e "s/v//gI")`" >> $GITHUB_ENV
           else
             echo "Version commit tag not found. Not publishing."
           fi
@@ -66,3 +67,28 @@ jobs:
           yarn
           yarn build
           npm publish ./dist
+
+      - name: Get Version Changelog Entry
+        if: env.publish == 'true'
+        id: changelog_reader
+        uses: mindsers/changelog-reader-action@v2
+        with:
+          version: ${{ env.VERSION_NUM }}
+          path: ./CHANGELOG.md
+        continue-on-error: true
+
+      - name: Create Release
+        if: env.publish == 'true'
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          # This pulls from the "Get Changelog Entry" step above, referencing it's ID to get its outputs object.
+          # See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          tag_name: ${{ steps.changelog_reader.outputs.version }}
+          release_name: Release ${{ steps.changelog_reader.outputs.version }}
+          body: ${{ steps.changelog_reader.outputs.changes }}
+          prerelease: ${{ steps.changelog_reader.outputs.status == 'prereleased' }}
+          draft: ${{ steps.changelog_reader.outputs.status == 'unreleased' }}
+        continue-on-error: true
