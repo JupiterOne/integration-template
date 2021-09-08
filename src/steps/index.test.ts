@@ -1,7 +1,7 @@
 import { createMockStepExecutionContext } from '@jupiterone/integration-sdk-testing';
 
 import { IntegrationConfig } from '../config';
-import { fetchGroups, fetchUsers } from './access';
+import { buildGroupUserRelationships, fetchGroups, fetchUsers } from './access';
 import { fetchAccountDetails } from './account';
 import { integrationConfig } from '../../test/config';
 
@@ -15,6 +15,7 @@ test('should collect data', async () => {
   await fetchAccountDetails(context);
   await fetchUsers(context);
   await fetchGroups(context);
+  await buildGroupUserRelationships(context);
 
   // Review snapshot, failure is a regression
   expect({

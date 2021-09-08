@@ -16,8 +16,10 @@ following examples:
 
 - JupiterOne periodically fetches services, teams, and users from {{provider}}
   to update the graph.
-- Write JupiterOne queries to review and monitor updates to the graph, or leverage existing queries.
-- Configure alerts to take action when JupiterOne graph changes, or leverage existing alerts.
+- Write JupiterOne queries to review and monitor updates to the graph, or
+  leverage existing queries.
+- Configure alerts to take action when JupiterOne graph changes, or leverage
+  existing alerts.
 
 ## Requirements
 
@@ -52,15 +54,17 @@ following steps will be reusable; take care to be sure they remain accurate.
 1. From the configuration **Gear Icon**, select **Integrations**.
 2. Scroll to the **{{provider}}** integration tile and click it.
 3. Click the **Add Configuration** button and configure the following settings:
+
 - Enter the **Account Name** by which you'd like to identify this {{provider}}
-   account in JupiterOne. Ingested entities will have this value stored in
-   `tag.AccountName` when **Tag with Account Name** is checked.
+  account in JupiterOne. Ingested entities will have this value stored in
+  `tag.AccountName` when **Tag with Account Name** is checked.
 - Enter a **Description** that will further assist your team when identifying
-   the integration instance.
+  the integration instance.
 - Select a **Polling Interval** that you feel is sufficient for your monitoring
-   needs. You may leave this as `DISABLED` and manually execute the integration.
-- {{additional provider-specific settings}} Enter the **{{provider}} API Key** 
-generated for use by JupiterOne.
+  needs. You may leave this as `DISABLED` and manually execute the integration.
+- {{additional provider-specific settings}} Enter the **{{provider}} API Key**
+  generated for use by JupiterOne.
+
 4. Click **Create Configuration** once all values are provided.
 
 # How to Uninstall
@@ -95,6 +99,8 @@ The following entities are created:
 | Resources | Entity `_type` | Entity `_class` |
 | --------- | -------------- | --------------- |
 | Account   | `acme_account` | `Account`       |
+| User      | `acme_user`    | `User`          |
+| UserGroup | `acme_group`   | `UserGroup`     |
 
 ### Relationships
 

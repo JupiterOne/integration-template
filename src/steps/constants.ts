@@ -6,8 +6,9 @@ import {
 
 export const Steps = {
   ACCOUNT: 'fetch-account',
-  GROUPS: 'fetch-groups',
   USERS: 'fetch-users',
+  GROUPS: 'fetch-groups',
+  GROUP_USER_RELATIONSHIPS: 'build-user-group-relationships',
 };
 
 export const Entities: Record<
