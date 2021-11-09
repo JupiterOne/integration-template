@@ -22,6 +22,9 @@ jobs:
         run: yarn
 
       - name: Run tests
+        env:
+          MANAGED_QUESTIONS_JUPITERONE_ACCOUNT_ID: ${{ secrets.MANAGED_QUESTIONS_JUPITERONE_ACCOUNT_ID }}
+          MANAGED_QUESTIONS_JUPITERONE_API_KEY: ${{ secrets.MANAGED_QUESTIONS_JUPITERONE_API_KEY }}
         run: yarn test:ci
 
       - name: Run build
