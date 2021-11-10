@@ -4,10 +4,25 @@ import { IntegrationConfig } from '../config';
 import { buildGroupUserRelationships, fetchGroups, fetchUsers } from './access';
 import { fetchAccountDetails } from './account';
 import { integrationConfig } from '../../test/config';
+import { Recording, setupIntegrationRecording } from '../../test/recording';
+
+let recording: Recording;
+
+function isRecordingEnabled() {
+  return Boolean(process.env.LOAD_ENV) === true;
+}
 
 test('should collect data', async () => {
   const context = createMockStepExecutionContext<IntegrationConfig>({
     instanceConfig: integrationConfig,
+  });
+
+  recording = setupIntegrationRecording({
+    directory: __dirname,
+    name: 'should collect data',
+    options: {
+      mode: isRecordingEnabled() ? 'record' : 'replay',
+    },
   });
 
   // Simulates dependency graph execution.
@@ -89,4 +104,8 @@ test('should collect data', async () => {
       required: ['logoLink'],
     },
   });
+
+  if (recording) {
+    await recording.stop();
+  }
 });
