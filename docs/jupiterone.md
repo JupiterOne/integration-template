@@ -21,7 +21,7 @@ following examples:
 - Configure alerts to take action when JupiterOne graph changes, or leverage
   existing alerts.
 
-## Requirements
+## Prerequisites
 
 TODO: Iterate requirements for setting up the integration. Consider the
 following examples:
@@ -29,15 +29,15 @@ following examples:
 - {{provider}} supports the OAuth2 Client Credential flow. You must have a
   Administrator user account.
 - JupiterOne requires a REST API key. You need permission to create a user in
-  {{provider}} that will be used to obtain the API key.
+  {{provider}} that is used to obtain the API key.
 - You must have permission in JupiterOne to install new integrations.
 
 ## Support
 
-If you need help with this integration, please contact
+If you need help with this integration, contact
 [JupiterOne Support](https://support.jupiterone.io).
 
-## Integration Walkthrough
+## How to Use This Integration
 
 ### In {{provider}}
 
@@ -48,24 +48,23 @@ section when there are no actions to take in the provider.
 
 ### In JupiterOne
 
-TODO: List specific actions that must be taken in JupiterOne. Many of the
+TODO: List specific actions that the user must take in JupiterOne. Many of the
 following steps will be reusable; take care to be sure they remain accurate.
 
-1. From the configuration **Gear Icon**, select **Integrations**.
-2. Scroll to the **{{provider}}** integration tile and click it.
-3. Click the **Add Configuration** button and configure the following settings:
+1. From the settings menu [](../../assets/icons/gear.png), select **Integrations**.
+2. Scroll down to **{{provider}}** and click it.
+3. Click **Add Configuration** and configure the following settings:
 
-- Enter the **Account Name** by which you'd like to identify this {{provider}}
-  account in JupiterOne. Ingested entities will have this value stored in
-  `tag.AccountName` when **Tag with Account Name** is checked.
-- Enter a **Description** that will further assist your team when identifying
-  the integration instance.
-- Select a **Polling Interval** that you feel is sufficient for your monitoring
-  needs. You may leave this as `DISABLED` and manually execute the integration.
-- {{additional provider-specific settings}} Enter the **{{provider}} API Key**
+- Enter the account name by which you want to identify this {{provider}}
+  account in JupiterOne. Select **Tag with Account Name** to store this value in 
+  `tag.AccountName` of the ingested assets.
+- Enter a description to help your team identify the integration.
+- Select a polling interval that is sufficient for your monitoring
+  requirements. You can leave this as `DISABLED` and manually execute the integration.
+- {{additional provider-specific settings}} Enter the {{provider}} API key
   generated for use by JupiterOne.
 
-4. Click **Create Configuration** once all values are provided.
+4. Click **Create Configuration** after you have entered all the values.
 
 # How to Uninstall
 
@@ -73,11 +72,11 @@ TODO: List specific actions that must be taken to uninstall the integration.
 Many of the following steps will be reusable; take care to be sure they remain
 accurate.
 
-1. From the configuration **Gear Icon**, select **Integrations**.
-2. Scroll to the **{{provider}}** integration tile and click it.
+1. From the settings menu [](../../assets/icons/gear.png), select **Integrations**.
+2. Scroll dowdn to **{{provider}}** and click it.
 3. Identify and click the **integration to delete**.
-4. Click the **trash can** icon.
-5. Click the **Remove** button to delete the integration.
+4. Click the trash can icon.
+5. Click **Remove** to delete the integration.
 
 <!-- {J1_DOCUMENTATION_MARKER_START} -->
 <!--
