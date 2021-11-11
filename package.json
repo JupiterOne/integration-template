@@ -6,7 +6,8 @@
   "main": "src/index.js",
   "types": "src/index.d.ts",
   "files": [
-    "src"
+    "src",
+    "jupiterone"
   ],
   "publishConfig": {
     "access": "public"
@@ -16,21 +17,23 @@
     "graph": "j1-integration visualize",
     "graph:types": "j1-integration visualize-types",
     "graph:spec": "j1-integration visualize-types --project-path docs/spec --output-file ./.j1-integration/types-graph/index.spec.html",
+    "validate:questions:dry": "j1-integration validate-question-file --dry-run",
+    "validate:questions": "j1-integration validate-question-file -a $MANAGED_QUESTIONS_JUPITERONE_ACCOUNT_ID -k $MANAGED_QUESTIONS_JUPITERONE_API_KEY",
     "lint": "eslint . --cache --fix --ext .ts,.tsx",
     "format": "prettier --write '**/*.{ts,js,json,css,md,yml}'",
     "type-check": "tsc",
     "test": "jest",
     "test:env": "LOAD_ENV=1 yarn test",
     "test:ci": "yarn lint && yarn type-check && yarn test",
-    "build": "tsc -p tsconfig.dist.json --declaration && cp README.md dist/README.md",
+    "build": "tsc -p tsconfig.dist.json --declaration && cp README.md dist/README.md && cp -r jupiterone/ dist/jupiterone/",
     "prepush": "yarn lint && yarn type-check && jest --changedSince main"
   },
   "peerDependencies": {
-    "@jupiterone/integration-sdk-core": "^6.19.0"
+    "@jupiterone/integration-sdk-core": "^7.4.0"
   },
   "devDependencies": {
-    "@jupiterone/integration-sdk-core": "^6.19.0",
-    "@jupiterone/integration-sdk-dev-tools": "^6.19.0",
-    "@jupiterone/integration-sdk-testing": "^6.19.0"
+    "@jupiterone/integration-sdk-core": "^7.4.0",
+    "@jupiterone/integration-sdk-dev-tools": "^7.4.0",
+    "@jupiterone/integration-sdk-testing": "^7.4.0"
   }
 }
