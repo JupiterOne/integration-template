@@ -66,6 +66,7 @@ function isRecordingEnabled() {
 export async function withRecording(
   recordingName: string,
   directoryName: string,
+  normalizeEntry: boolean,
   cb: () => Promise<void>,
   options?: SetupRecordingInput['options'],
 ) {
@@ -76,7 +77,9 @@ export async function withRecording(
     name: recordingName,
     mutateEntry(entry) {
       redact(entry);
-      normalizeRequestEntry(entry);
+      if (normalizeEntry) {
+        normalizeRequestEntry(entry);
+      }
     },
     options: {
       mode: recordingEnabled ? 'record' : 'replay',
@@ -116,6 +119,7 @@ export interface RelationshipSchemaMatcher {
 export interface CreateDataCollectionTestParams<IIntegrationConfig> {
   recordingName: string;
   recordingDirectory: string;
+  normalizeEntryFlag: boolean;
   integrationConfig: IIntegrationConfig;
   stepFunctions: ((
     context: IntegrationStepExecutionContext<IIntegrationConfig>,
@@ -125,9 +129,34 @@ export interface CreateDataCollectionTestParams<IIntegrationConfig> {
   options?: PollyConfig;
 }
 
+/**
+ * Sets up and runs a given test collection.  Recording start/stop is automatically
+ * handled for any run that has the LOAD_ENV environment variable set.
+ *
+ * @param recordingName recording name listed in the .har recording file.
+ *
+ * @param recordingDirectory directory for location of recording .har file.
+ *
+ * @param normalizeEntryFlag set to true to have a normalized URL used in recording files.
+ * This comes in handy for instances where testing locally and remotely result in conflicting
+ * recording files.
+ *
+ * @param integrationConfig configuration object containing integration parameters
+ *
+ * @param stepFunctions list of function steps to execute in test.
+ *
+ * @param entitySchemaMatchers list of EntitySchemaMatcher objects to run
+ * toMatchGraphObjectSchema against.
+ *
+ * @param relationshipSchemaMatchers list of RelationshipSchemaMatcher objects to
+ * run toMatchDirectRelationshipSchema against.
+ *
+ * @param options additional Polly configuration options.
+ */
 export async function createDataCollectionTest<IIntegrationConfig>({
   recordingName,
   recordingDirectory,
+  normalizeEntryFlag,
   integrationConfig,
   stepFunctions,
   entitySchemaMatchers,
@@ -141,6 +170,7 @@ export async function createDataCollectionTest<IIntegrationConfig>({
   await withRecording(
     recordingName,
     recordingDirectory,
+    normalizeEntryFlag,
     async () => {
       for (const stepFunction of stepFunctions) {
         await stepFunction(context);

@@ -10,6 +10,7 @@ describe('#fetchDetails', () => {
     await createDataCollectionTest({
       recordingName: 'fetchDetails',
       recordingDirectory: __dirname,
+      normalizeEntryFlag: false,
       integrationConfig,
       stepFunctions: [
         fetchAccountDetails,
