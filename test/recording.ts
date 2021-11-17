@@ -66,7 +66,7 @@ function isRecordingEnabled() {
 export async function withRecording(
   recordingName: string,
   directoryName: string,
-  normalizeEntry: boolean,
+  normalizeEntry: boolean = false,
   cb: () => Promise<void>,
   options?: SetupRecordingInput['options'],
 ) {
@@ -119,7 +119,7 @@ export interface RelationshipSchemaMatcher {
 export interface CreateDataCollectionTestParams<IIntegrationConfig> {
   recordingName: string;
   recordingDirectory: string;
-  normalizeEntryFlag: boolean;
+  normalizeEntry?: boolean;
   integrationConfig: IIntegrationConfig;
   stepFunctions: ((
     context: IntegrationStepExecutionContext<IIntegrationConfig>,
@@ -137,9 +137,8 @@ export interface CreateDataCollectionTestParams<IIntegrationConfig> {
  *
  * @param recordingDirectory directory for location of recording .har file.
  *
- * @param normalizeEntryFlag set to true to have a normalized URL used in recording files.
- * This comes in handy for instances where testing locally and remotely result in conflicting
- * recording files.
+ * @param normalizeEntry set to true to normalized URL and host values throughout
+ * recording files.  Omit or set to false to skip normalization.
  *
  * @param integrationConfig configuration object containing integration parameters
  *
@@ -156,7 +155,7 @@ export interface CreateDataCollectionTestParams<IIntegrationConfig> {
 export async function createDataCollectionTest<IIntegrationConfig>({
   recordingName,
   recordingDirectory,
-  normalizeEntryFlag,
+  normalizeEntry,
   integrationConfig,
   stepFunctions,
   entitySchemaMatchers,
@@ -170,7 +169,7 @@ export async function createDataCollectionTest<IIntegrationConfig>({
   await withRecording(
     recordingName,
     recordingDirectory,
-    normalizeEntryFlag,
+    normalizeEntry,
     async () => {
       for (const stepFunction of stepFunctions) {
         await stepFunction(context);
