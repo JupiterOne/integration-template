@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`#fetchDetails should collect data: jobState 1`] = `
+exports[`should collect data 1`] = `
 Object {
   "collectedEntities": Array [
     Object {
