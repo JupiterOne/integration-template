@@ -16,6 +16,7 @@ export function createUserEntity(user: AcmeUser): Entity {
       assign: {
         _type: Entities.USER._type,
         _class: Entities.USER._class,
+        _key: user.id,
         username: 'testusername',
         email: 'test@test.com',
         // This is a custom property that is not a part of the data model class
@@ -33,6 +34,7 @@ export function createGroupEntity(group: AcmeGroup): Entity {
       assign: {
         _type: Entities.GROUP._type,
         _class: Entities.GROUP._class,
+        _key: group.id,
         email: 'testgroup@test.com',
         // This is a custom property that is not a part of the data model class
         // hierarchy. See: https://github.com/JupiterOne/data-model/blob/master/src/schemas/UserGroup.json
