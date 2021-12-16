@@ -34,7 +34,7 @@ Please delete options that are not relevant.
 ### Integration Development Checklist:
 
 Please delete options that are not relevant.
-
+- [ ] I have checked for additional permissions required to call any new API endpoints, and have documented any additional permissions in `jupiterone.md`, where necessary.
 - [ ] My changes properly paginate the target service provider's API
 - [ ] My changes properly handle rate limiting of the target service provider's
       API
