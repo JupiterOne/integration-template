@@ -12,7 +12,7 @@ for this change.
 
 ## Type of change
 
-Please delete options that are not relevant.
+Please leave any irrelevant options unchecked.
 
 - [ ] Bug fix (non-breaking change which fixes an issue)
 - [ ] New feature (non-breaking change which adds functionality)
@@ -27,21 +27,27 @@ Please delete options that are not relevant.
 - [ ] I have performed a self-review of my own code
 - [ ] I have commented my code, particularly in hard-to-understand areas
 - [ ] I have made corresponding changes to the documentation
-- [ ] My changes generate no new warnings / errors
 - [ ] I have added tests that prove my fix is effective or that my feature works
 - [ ] New and existing unit tests pass locally with my changes
 
 ### Integration Development Checklist:
 
-Please delete options that are not relevant.
-- [ ] I have checked for additional permissions required to call any new API endpoints, and have documented any additional permissions in `jupiterone.md`, where necessary.
+Please leave any irrelevant options unchecked.
+
+- [ ] I have checked for additional permissions required to call any new API
+      endpoints, and have documented any additional permissions in
+      `jupiterone.md`, where necessary.
 - [ ] My changes properly paginate the target service provider's API
 - [ ] My changes properly handle rate limiting of the target service provider's
       API
 - [ ] My new integration step is instrumented to execute in the correct order
       using `dependsOn`
-- [ ] I have referred to the [JupiterOne data
-      model](https://github.com/JupiterOne/data-model/tree/main/src/schemas) to
-      ensure that any new entities/relationships, and relevant properties, match
-      the recommended model for this class of data
+- [ ] I have referred to the
+      [JupiterOne data model](https://github.com/JupiterOne/data-model/tree/main/src/schemas)
+      to ensure that any new entities/relationships, and relevant properties,
+      match the recommended model for this class of data
 - [ ] I have updated the `CHANGELOG.md` file to describe my changes
+- [ ] When changes include modifications to existing graph data ingestion, I've
+      reviewed all existing managed questions referencing the entities,
+      relationships, and their property names, to ensure those questions still
+      function with my changes.
