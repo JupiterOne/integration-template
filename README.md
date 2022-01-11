@@ -77,7 +77,8 @@ will not be published to NPM.
 
 **TIP:** We recommend updating your global `~/.gitconfig` with the
 `push.followTags = true` property. This will automatically add the
-`--follow-tags` flag to any new commits.
+`--follow-tags` flag to any new commits. See
+<https://git-scm.com/docs/git-config#Documentation/git-config.txt-pushfollowTags>
 
 ```
 [push]
