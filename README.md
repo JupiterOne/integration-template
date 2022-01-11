@@ -63,48 +63,27 @@ The history of this integration's development can be viewed at
 To version this project and tag the repo with a new version number, run the
 following (where `major.minor.patch` is the version you expect to move to):
 
-```shell
+```sh
 git checkout -b release-<major>.<minor>.<patch>
-git push -u origin release-<major>.<minor>.<patch>
+vim CHANGELOG.md # remember to update CHANGELOG.md with version & date!
+git add CHANGELOG.md
 yarn version <major>.<minor>.<patch>
-git push --follow-tags
+git push --follow-tags -u origin release-<major>.<minor>.<patch>
 ```
 
 **NOTE:** It is _critical_ that the tagged commit is the _last_ commit before
 merging to main. If any commit is added _after_ the tagged commit, the project
 will not be published to NPM.
 
-After the PR is merged to main, the
+**TIP:** We recommend updating your global `~/.gitconfig` with the
+`push.followTags = true` property. This will automatically add the
+`--follow-tags` flag to any new commits.
+
+```
+[push]
+	followTags = true
+```
+
+After the PR is merged to the main branch, the
 [**Build** github workflow](./.github/workflows/build.yml) should run the
 **Publish** step to publish this project to NPM.
-
-```yml
-# .github/workflows/build.yml
-name: Build
-on:
-  pull_request:
-  push:
-    branches:
-      - main
-
-jobs:
-  test:
-    { ... }
-
-  release:
-    needs: test
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-    steps:
-      { ... }
-      - name: Publish
-        if: env.publish == 'true'
-        env:
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-        run: |
-          echo "//registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}" > .npmrc
-          yarn
-          yarn build
-          npm publish ./dist
-      { ... }
-```
