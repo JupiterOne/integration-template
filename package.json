@@ -29,11 +29,11 @@
     "prepush": "yarn lint && yarn type-check && jest --changedSince main"
   },
   "peerDependencies": {
-    "@jupiterone/integration-sdk-core": "^7.4.1"
+    "@jupiterone/integration-sdk-core": "^8.2.0"
   },
   "devDependencies": {
-    "@jupiterone/integration-sdk-core": "^7.4.1",
-    "@jupiterone/integration-sdk-dev-tools": "^7.4.1",
-    "@jupiterone/integration-sdk-testing": "^7.4.1"
+    "@jupiterone/integration-sdk-core": "^8.2.0",
+    "@jupiterone/integration-sdk-dev-tools": "^8.2.0",
+    "@jupiterone/integration-sdk-testing": "^8.2.0"
   }
 }

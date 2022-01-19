@@ -75,12 +75,13 @@ test('should collect data', async () => {
       properties: {
         _type: { const: 'acme_user' },
         firstName: { type: 'string' },
+        active: { type: 'boolean' },
         _rawData: {
           type: 'array',
           items: { type: 'object' },
         },
       },
-      required: ['firstName'],
+      required: ['firstName', 'active'],
     },
   });
 
