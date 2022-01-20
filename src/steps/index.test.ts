@@ -1,4 +1,7 @@
-import { createMockStepExecutionContext } from '@jupiterone/integration-sdk-testing';
+import {
+  createMockStepExecutionContext,
+  //Recording,
+} from '@jupiterone/integration-sdk-testing';
 
 import { IntegrationConfig } from '../config';
 import { buildGroupUserRelationships, fetchGroups, fetchUsers } from './access';
@@ -12,7 +15,23 @@ function isRecordingEnabled() {
   return Boolean(process.env.LOAD_ENV) === true;
 }
 
+//import { setupProjectRecording } from '../../test/recording';
+
+/* uncomment when ready. See test/README.md for details
+let recording: Recording;
+afterEach(async () => {
+  await recording.stop();
+});
+*/
+
 test('should collect data', async () => {
+  /* uncomment when ready
+  recording = setupProjectRecording({
+    directory: __dirname,
+    name: 'steps',
+  });
+  */
+
   const context = createMockStepExecutionContext<IntegrationConfig>({
     instanceConfig: integrationConfig,
   });
@@ -72,12 +91,13 @@ test('should collect data', async () => {
       properties: {
         _type: { const: 'acme_user' },
         firstName: { type: 'string' },
+        active: { type: 'boolean' },
         _rawData: {
           type: 'array',
           items: { type: 'object' },
         },
       },
-      required: ['firstName'],
+      required: ['firstName', 'active'],
     },
   });
 
