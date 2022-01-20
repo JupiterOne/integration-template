@@ -53,6 +53,17 @@ for a deep dive into the mechanics of how integrations work.
 See [docs/development.md](docs/development.md) for any additional details about
 developing this integration.
 
+## Testing the integation
+
+Ideally, all major calls to the API and converter functions would be tested. You
+can run the tests with `yarn test`, and you can run the tests as they execute in
+the CI/CD environment with `yarn test:ci` (adds linting and type-checking to
+`yarn test`). If you have a valid runtime configuration, you can run the tests
+with your credentials using `yarn test:env`.
+
+For more details on setting up tests, and specifically on using recordings to
+simulate API responses, see `test/README.md`.
+
 ### Changelog
 
 The history of this integration's development can be viewed at
