@@ -86,9 +86,9 @@ git push --follow-tags -u origin release-<major>.<minor>.<patch>
 merging to main. If any commit is added _after_ the tagged commit, the project
 will not be published to NPM.
 
-**NOTE:** Make sure you select the _Create a merge commit_ option when 
-merging the PR for your release branch. Otherwise the publishing workflow 
-will error out.
+**NOTE:** Make sure you select the _Create a merge commit_ option when merging
+the PR for your release branch. Otherwise the publishing workflow will error
+out.
 
 **TIP:** We recommend updating your global `~/.gitconfig` with the
 `push.followTags = true` property. This will automatically add the
