@@ -51,7 +51,7 @@ section when there are no actions to take in the provider.
 TODO: List specific actions that the user must take in JupiterOne. Many of the
 following steps will be reusable; take care to be sure they remain accurate.
 
-1. Click the gear icon to open the settings menu , and select **Integrations**.
+1. Click the gear icon to open the settings menu, and select **Integrations**.
 2. Scroll down to **{{provider}}** and click it.
 3. Click **Add Configuration** and configure the following settings:
 
