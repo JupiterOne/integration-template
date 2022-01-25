@@ -1,6 +1,6 @@
-# Integration with JupiterOne
+# {{provider}} Integration with JupiterOne
 
-## {{provider}} + JupiterOne Integration Benefits
+## Integration Benefits
 
 TODO: Iterate the benefits of ingesting data from the provider into JupiterOne.
 Consider the following examples:
