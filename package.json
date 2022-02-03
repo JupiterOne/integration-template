@@ -21,12 +21,13 @@
     "validate:questions": "j1-integration validate-question-file -a $MANAGED_QUESTIONS_JUPITERONE_ACCOUNT_ID -k $MANAGED_QUESTIONS_JUPITERONE_API_KEY",
     "lint": "eslint . --cache --fix --ext .ts,.tsx",
     "format": "prettier --write '**/*.{ts,js,json,css,md,yml}'",
+    "format:check": "prettier --check '**/*.{ts,js,json,css,md,yml}'",
     "type-check": "tsc",
     "test": "jest",
     "test:env": "LOAD_ENV=1 yarn test",
-    "test:ci": "yarn lint && yarn type-check && yarn test",
+    "test:ci": "yarn format:check && yarn lint && yarn type-check && yarn test",
     "build": "tsc -p tsconfig.dist.json --declaration && cp README.md dist/README.md && cp -r jupiterone/ dist/jupiterone/",
-    "prepush": "yarn lint && yarn type-check && jest --changedSince main"
+    "prepush": "yarn format:check && yarn lint && yarn type-check && jest --changedSince main"
   },
   "peerDependencies": {
     "@jupiterone/integration-sdk-core": "^8.2.0"
