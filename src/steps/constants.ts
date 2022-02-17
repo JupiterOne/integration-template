@@ -19,16 +19,39 @@ export const Entities: Record<
     resourceName: 'Account',
     _type: 'acme_account',
     _class: ['Account'],
+    schema: {
+      properties: {
+        mfaEnabled: { type: 'boolean' },
+        manager: { type: 'string' },
+      },
+      required: ['mfaEnabled', 'manager'],
+    },
   },
   GROUP: {
     resourceName: 'UserGroup',
     _type: 'acme_group',
     _class: ['UserGroup'],
+    schema: {
+      properties: {
+        email: { type: 'string' },
+        logoLink: { type: 'string' },
+      },
+      required: ['email', 'logoLink'],
+    },
   },
   USER: {
     resourceName: 'User',
     _type: 'acme_user',
     _class: ['User'],
+    schema: {
+      properties: {
+        username: { type: 'string' },
+        email: { type: 'string' },
+        active: { type: 'boolean' },
+        firstName: { type: 'string' },
+      },
+      required: ['username', 'email', 'active', 'firstName'],
+    },
   },
 };
 
