@@ -57,14 +57,43 @@ need to modify what Polly looks at in generating the guid. You can do this by
 passing Polly options to your recording setup function in `test/recording.ts`.
 For example:
 
-`setupRecording({ ...input, redactedRequestHeaders: ['Authorization'], redactedResponseHeaders: ['set-cookie'], mutateEntry: (entry) => { redact(entry); }, options: { matchRequestsBy: { headers: false, order: false, }, }, });`
+```ts
+setupRecording({
+  ...input,
+  redactedRequestHeaders: ['Authorization'],
+  redactedResponseHeaders: ['set-cookie'],
+  mutateEntry: (entry) => {
+    redact(entry);
+  },
+  options: {
+    matchRequestsBy: {
+      headers: false,
+      order: false,
+    },
+  },
+});
+```
 
 Here is everything Polly uses by default to generate the guid:
 
-`matchRequestsBy: { method: true, headers: true, body: true, order: true,
-
-url: { protocol: true, username: true, password: true, hostname: true, port:
-true, pathname: true, query: true, hash: false } }`
+```ts
+matchRequestsBy: {
+  method: true,
+  headers: true,
+  body: true,
+  order: true,
+  url: {
+    protocol: true,
+    username: true,
+    password: true,
+    hostname: true,
+    port: true,
+    pathname: true,
+    query: true,
+    hash: false
+  }
+}
+```
 
 Even more detail can be found here:
 https://github.com/Netflix/pollyjs/blob/master/docs/configuration.md
