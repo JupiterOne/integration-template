@@ -1,10 +1,7 @@
 import {
-  IntegrationExecutionContext,
-  IntegrationValidationError,
   IntegrationInstanceConfigFieldMap,
   IntegrationInstanceConfig,
 } from '@jupiterone/integration-sdk-core';
-import { createAPIClient } from './client';
 
 /**
  * A type describing the configuration fields required to execute the
@@ -44,19 +41,4 @@ export interface IntegrationConfig extends IntegrationInstanceConfig {
    * The provider API client secret used to authenticate requests.
    */
   clientSecret: string;
-}
-
-export async function validateInvocation(
-  context: IntegrationExecutionContext<IntegrationConfig>,
-) {
-  const { config } = context.instance;
-
-  if (!config.clientId || !config.clientSecret) {
-    throw new IntegrationValidationError(
-      'Config requires all of {clientId, clientSecret}',
-    );
-  }
-
-  const apiClient = createAPIClient(config);
-  await apiClient.verifyAuthentication();
 }
