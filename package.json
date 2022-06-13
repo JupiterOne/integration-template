@@ -17,6 +17,7 @@
     "graph": "j1-integration visualize",
     "graph:types": "j1-integration visualize-types",
     "graph:spec": "j1-integration visualize-types --project-path docs/spec --output-file ./.j1-integration/types-graph/index.spec.html",
+    "graph:dependencies": "j1-integration visualize-dependencies",
     "validate:questions:dry": "j1-integration validate-question-file --dry-run",
     "validate:questions": "j1-integration validate-question-file -a $MANAGED_QUESTIONS_JUPITERONE_ACCOUNT_ID -k $MANAGED_QUESTIONS_JUPITERONE_API_KEY",
     "lint": "eslint . --cache --fix --ext .ts,.tsx",
@@ -30,11 +31,11 @@
     "prepush": "yarn format:check && yarn lint && yarn type-check && jest --changedSince main"
   },
   "peerDependencies": {
-    "@jupiterone/integration-sdk-core": "^8.13.11"
+    "@jupiterone/integration-sdk-core": "^8.14.0"
   },
   "devDependencies": {
-    "@jupiterone/integration-sdk-core": "^8.13.11",
-    "@jupiterone/integration-sdk-dev-tools": "^8.13.11",
-    "@jupiterone/integration-sdk-testing": "^8.13.11"
+    "@jupiterone/integration-sdk-core": "^8.14.0",
+    "@jupiterone/integration-sdk-dev-tools": "^8.14.0",
+    "@jupiterone/integration-sdk-testing": "^8.14.0"
   }
 }
