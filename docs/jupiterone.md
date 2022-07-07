@@ -1,4 +1,4 @@
-# {{provider}} Integration with JupiterOne
+# {{provider}}
 
 ## {{provider}} + JupiterOne Integration Benefits
 
