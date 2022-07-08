@@ -28,8 +28,7 @@ with JupiterOne in the [integration documentation](docs/jupiterone.md).
 
    The `.env` file is loaded into `process.env` before the integration code is
    executed. This file is not required should you configure the environment
-   another way. `.gitignore` is configured to to avoid commiting the `.env`
-   file.
+   another way. `.gitignore` is configured to avoid committing the `.env` file.
 
 ### Running the integration
 
