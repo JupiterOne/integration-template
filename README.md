@@ -69,37 +69,36 @@ simulate API responses, see `test/README.md`.
 The history of this integration's development can be viewed at
 [CHANGELOG.md](CHANGELOG.md).
 
-### Versioning this project
+## Versioning this project
 
-To version this project and tag the repo with a new version number, run the
-following (where `major.minor.patch` is the version you expect to move to):
+This project is versioned using [auto](https://intuit.github.io/auto/).
 
-```sh
-git checkout -b release-<major>.<minor>.<patch>
-vim CHANGELOG.md # remember to update CHANGELOG.md with version & date!
-git add CHANGELOG.md
-yarn version --new-version <major>.<minor>.<patch>
-git push --follow-tags -u origin release-<major>.<minor>.<patch>
-```
+Versioning and publishing to NPM are now handled via adding GitHub labels to
+pull requests. The following labels should be used for this process:
 
-**NOTE:** It is _critical_ that the tagged commit is the _last_ commit before
-merging to main. If any commit is added _after_ the tagged commit, the project
-will not be published to NPM.
+- patch
+- minor
+- major
+- release
 
-**NOTE:** Make sure you select the _Create a merge commit_ option when merging
-the PR for your release branch. Otherwise the publishing workflow will error
-out.
+For each pull request, the degree of change should be registered by applying the
+appropriate label of patch, minor, or major. This allows the repository to keep
+track of the highest degree of change since the last release. When ready to
+publish to NPM, the PR should have both its appropriate patch, minor, or major
+label applied as well as a release label. The release label will denote to the
+system that we need to publish to NPM and will correctly version based on the
+highest degree of change since the last release, package the project, and
+publish it to NPM.
 
-**TIP:** We recommend updating your global `~/.gitconfig` with the
-`push.followTags = true` property. This will automatically add the
-`--follow-tags` flag to any new commits. See
-<https://git-scm.com/docs/git-config#Documentation/git-config.txt-pushfollowTags>
+In order to successfully version and publish to NPM we need access to two
+secrets: a valid NPM token for publishing and a GitHub token for querying the
+repo and pushing version changes. For JupiterOne projects please put in a ticket
+with security to have the repository correctly granted access. For external
+projects, please provide secrets with access to your own NPM and GitHub
+accounts. The secret names should be set to NPM_AUTH_TOKEN and
+AUTO_GITHUB_PAT_TOKEN respectively (or the action can be updated to accomodate
+different naming conventions).
 
-```
-[push]
-	followTags = true
-```
-
-After the PR is merged to the main branch, the
-[**Build** github workflow](./.github/workflows/build.yml) should run the
-**Publish** step to publish this project to NPM.
+We are not currently using the functionality for auto to update the CHANGELOG.
+As such, please remember to update CHANGELOG.md with the appropriate version,
+date, and changes.

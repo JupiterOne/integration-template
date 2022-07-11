@@ -28,7 +28,8 @@
     "test:env": "LOAD_ENV=1 yarn test",
     "test:ci": "yarn format:check && yarn lint && yarn type-check && yarn test",
     "build": "tsc -p tsconfig.dist.json --declaration && cp README.md dist/README.md && cp -r jupiterone/ dist/jupiterone/",
-    "prepush": "yarn format:check && yarn lint && yarn type-check && jest --changedSince main"
+    "prepush": "yarn format:check && yarn lint && yarn type-check && jest --changedSince main",
+    "postversion": "cp package.json ./dist/package.json"
   },
   "peerDependencies": {
     "@jupiterone/integration-sdk-core": "^8.14.0"
@@ -36,6 +37,24 @@
   "devDependencies": {
     "@jupiterone/integration-sdk-core": "^8.14.0",
     "@jupiterone/integration-sdk-dev-tools": "^8.14.0",
-    "@jupiterone/integration-sdk-testing": "^8.14.0"
+    "@jupiterone/integration-sdk-testing": "^8.14.0",
+    "auto": "^10.36.5"
+  },
+  "auto": {
+    "plugins": [
+      [
+        "npm",
+        {
+          "setRcToken": false,
+          "publishFolder": "./dist"
+        }
+      ],
+      "released"
+    ],
+    "onlyPublishWithReleaseLabel": true,
+    "shipit": {
+      "noChangelog": true,
+      "prerelease": false
+    }
   }
 }
