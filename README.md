@@ -73,8 +73,8 @@ The history of this integration's development can be viewed at
 
 This project is versioned using [auto](https://intuit.github.io/auto/).
 
-Versioning and publishing to NPM are now handled via adding tags to pull
-requests. The following tags should be used for this process:
+Versioning and publishing to NPM are now handled via adding GitHub labels to
+pull requests. The following labels should be used for this process:
 
 - patch
 - minor
@@ -82,13 +82,13 @@ requests. The following tags should be used for this process:
 - release
 
 For each pull request, the degree of change should be registered by applying the
-appropriate tag of patch, minor, or major. This allows the repository to keep
+appropriate label of patch, minor, or major. This allows the repository to keep
 track of the highest degree of change since the last release. When ready to
 publish to NPM, the PR should have both its appropriate patch, minor, or major
-tag applied as well as a release tag. The release tag will denote to the system
-that we need to publish to NPM and will correctly version based on the highest
-degree of change since the last release, package the project, and publish it to
-NPM.
+label applied as well as a release label. The release label will denote to the
+system that we need to publish to NPM and will correctly version based on the
+highest degree of change since the last release, package the project, and
+publish it to NPM.
 
 In order to successfully version and publish to NPM we need access to two
 secrets: a valid NPM token for publishing and a GitHub token for querying the
