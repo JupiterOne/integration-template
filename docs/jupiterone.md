@@ -66,7 +66,7 @@ following steps will be reusable; take care to be sure they remain accurate.
 
 4. Click **Create Configuration** after you have entered all the values.
 
-# How to Uninstall
+## How to Uninstall
 
 TODO: List specific actions that must be taken to uninstall the integration.
 Many of the following steps will be reusable; take care to be sure they remain
