@@ -32,12 +32,12 @@
     "postversion": "cp package.json ./dist/package.json"
   },
   "peerDependencies": {
-    "@jupiterone/integration-sdk-core": "^8.14.0"
+    "@jupiterone/integration-sdk-core": "^8.22.0"
   },
   "devDependencies": {
-    "@jupiterone/integration-sdk-core": "^8.14.0",
-    "@jupiterone/integration-sdk-dev-tools": "^8.14.0",
-    "@jupiterone/integration-sdk-testing": "^8.14.0",
+    "@jupiterone/integration-sdk-core": "^8.22.0",
+    "@jupiterone/integration-sdk-dev-tools": "^8.22.0",
+    "@jupiterone/integration-sdk-testing": "^8.22.0",
     "auto": "^10.36.5"
   },
   "auto": {
