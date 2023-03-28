@@ -30,6 +30,9 @@ jobs:
         with:
           integrationName:
             ${{ steps.get-integration-name.outputs.integrationName }}
+          graphProjectName:
+            ${{ steps.get-integration-name.outputs.integrationName }}
+          releaseNotes: ${{ github.event.release.body }}
           version: ${{ steps.get-version-number.outputs.versionNumber }}
           githubToken: ${{ secrets.AUTO_GITHUB_PAT_TOKEN }}
           npmAuthToken: ${{ secrets.NPM_AUTH_TOKEN }}
