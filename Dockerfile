@@ -17,7 +17,7 @@ COPY --from=builder --chown=node:node ${JUPITERONE_INTEGRATION_DIR}/yarn.lock ${
 COPY scripts/ ${JUPITERONE_INTEGRATION_DIR}/scripts
 WORKDIR ${JUPITERONE_INTEGRATION_DIR}
 RUN apt-get update && apt-get install -y python3
-RUN yarn install --production --fronzen-lockfile --cache-folder ./ycache && yarn global add --cache-folder ./ycache @jupiterone/integration-sdk-cli && rm -rf ./ycache
+RUN yarn install --production --fronzen-lockfile --cache-folder ./ycache && yarn global add --cache-folder ./ycache @jupiterone/integration-sdk-cli && rm -rf ./ycache  && chown -R node:node /opt/jupiterone
 RUN export PATH="$(yarn global bin):$PATH"
 
 USER node
