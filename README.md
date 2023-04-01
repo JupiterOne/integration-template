@@ -63,7 +63,7 @@ for a deep dive into the mechanics of how integrations work.
 See [docs/development.md](docs/development.md) for any additional details about
 developing this integration.
 
-## Testing the integation
+## Testing the integration
 
 Ideally, all major calls to the API and converter functions would be tested. You
 can run the tests with `yarn test`, and you can run the tests as they execute in
@@ -106,7 +106,7 @@ repo and pushing version changes. For JupiterOne projects please put in a ticket
 with security to have the repository correctly granted access. For external
 projects, please provide secrets with access to your own NPM and GitHub
 accounts. The secret names should be set to NPM_AUTH_TOKEN and
-AUTO_GITHUB_PAT_TOKEN respectively (or the action can be updated to accomodate
+AUTO_GITHUB_PAT_TOKEN respectively (or the action can be updated to accommodate
 different naming conventions).
 
 We are not currently using the functionality for auto to update the CHANGELOG.
