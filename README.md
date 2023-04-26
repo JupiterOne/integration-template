@@ -32,9 +32,20 @@ with JupiterOne in the [integration documentation](docs/jupiterone.md).
 
 ### Running the integration
 
+#### Running directly
+
 1. `yarn start` to collect data
 2. `yarn graph` to show a visualization of the collected data
 3. `yarn j1-integration -h` for additional commands
+
+#### Running with Docker
+
+Create an integration instance for the integration in JupiterOne. With an
+**JupiterOne API Key** scoped to the integration or an API Key with permissions
+to synchronize data and the **Integration Instance ID**:
+
+1. `docker build -t $IMAGE_NAME .`
+2. `docker run -e "JUPITERONE_API_KEY=<JUPITERONE_API_KEY>" -e "JUPITERONE_ACCOUNT=<JUPITERONE_ACCOUNT> -e "INTEGRATION_INSTANCE_ID=<INTEGRATION_INSTANCE_ID>" "JUPITERONE_API_BASE_URL=<JUPITERONE_API_BASE_URL>" $IMAGE_NAME`
 
 ### Making Contributions
 
@@ -52,7 +63,7 @@ for a deep dive into the mechanics of how integrations work.
 See [docs/development.md](docs/development.md) for any additional details about
 developing this integration.
 
-## Testing the integation
+## Testing the integration
 
 Ideally, all major calls to the API and converter functions would be tested. You
 can run the tests with `yarn test`, and you can run the tests as they execute in
@@ -95,7 +106,7 @@ repo and pushing version changes. For JupiterOne projects please put in a ticket
 with security to have the repository correctly granted access. For external
 projects, please provide secrets with access to your own NPM and GitHub
 accounts. The secret names should be set to NPM_AUTH_TOKEN and
-AUTO_GITHUB_PAT_TOKEN respectively (or the action can be updated to accomodate
+AUTO_GITHUB_PAT_TOKEN respectively (or the action can be updated to accommodate
 different naming conventions).
 
 We are not currently using the functionality for auto to update the CHANGELOG.

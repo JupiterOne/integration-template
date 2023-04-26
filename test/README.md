@@ -42,7 +42,7 @@ have a clean recording to commit to git.
 
 If you commit a dirty recording, your git history will still have the secrets
 even if you fix them in a later commit. Bad actors know this and regularly scan
-git history. Therefore, if you acccidentally commit a dirty recording, it will
+git history. Therefore, if you accidentally commit a dirty recording, it will
 require modification of your git history.
 
 ## Advanced Polly options
