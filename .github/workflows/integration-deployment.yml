@@ -26,7 +26,7 @@ jobs:
             const versionNumber = tagName.replace("v", "")
             core.setOutput('versionNumber', versionNumber)
       - name: Bump integration deployment version
-        uses: JupiterOne/integration-github-actions/create-integration-deployment@v1.0.0
+        uses: JupiterOne/integration-github-actions/create-integration-deployment@v1.2.0
         with:
           integrationName:
             ${{ steps.get-integration-name.outputs.integrationName }}
