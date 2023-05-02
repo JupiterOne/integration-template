@@ -1,4 +1,4 @@
-FROM node:14-bullseye-slim as builder
+FROM node:18-bullseye-slim as builder
 
 ENV JUPITERONE_INTEGRATION_DIR=/opt/jupiterone/integration
 
@@ -10,7 +10,7 @@ RUN yarn install
 RUN yarn build:docker
 
 
-FROM node:14-bullseye-slim
+FROM node:18-bullseye-slim
 ENV JUPITERONE_INTEGRATION_DIR=/opt/jupiterone/integration
 COPY --from=builder --chown=node:node ${JUPITERONE_INTEGRATION_DIR}/dist ${JUPITERONE_INTEGRATION_DIR}
 COPY --from=builder --chown=node:node ${JUPITERONE_INTEGRATION_DIR}/yarn.lock ${JUPITERONE_INTEGRATION_DIR}
