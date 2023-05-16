@@ -11,20 +11,16 @@ jobs:
     steps:
       - name: Get integration name
         id: get-integration-name
-        uses: actions/github-script@0.9.0
-        with:
-          script: |
-            const repositoryName = context.payload.repository.name
-            const integrationName = repositoryName.replace("graph-", "")
-            core.setOutput('integrationName', integrationName)
+        shell: bash
+        run: |
+          NAME=${{ github.event.repository.name }}
+          echo "integrationName=${NAME#graph-}" >> $GITHUB_OUTPUT
       - name: Get version number
         id: get-version-number
-        uses: actions/github-script@0.9.0
-        with:
-          script: |
-            const tagName = context.payload.release.tag_name
-            const versionNumber = tagName.replace("v", "")
-            core.setOutput('versionNumber', versionNumber)
+        shell: bash
+        run: |
+          TAG=${{ github.event.release.tag_name }}
+          echo "versionNumber=${TAG#v}" >> $GITHUB_OUTPUT
       - name: Bump integration deployment version
         uses: JupiterOne/integration-github-actions/create-integration-deployment@v1.2.1
         with:
