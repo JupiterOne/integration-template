@@ -22,7 +22,7 @@ jobs:
           TAG=${{ github.event.release.tag_name }}
           echo "versionNumber=${TAG#v}" >> $GITHUB_OUTPUT
       - name: Bump integration deployment version
-        uses: JupiterOne/integration-github-actions/create-integration-deployment@v2.0.0
+        uses: JupiterOne/integration-github-actions/create-integration-deployment@v2.0.1
         with:
           integrationName:
             ${{ steps.get-integration-name.outputs.integrationName }}
