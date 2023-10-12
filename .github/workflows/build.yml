@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  test:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code repository source code
