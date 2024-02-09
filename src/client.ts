@@ -1,6 +1,8 @@
-import http from 'http';
-
-import { IntegrationProviderAuthenticationError } from '@jupiterone/integration-sdk-core';
+import {
+  IntegrationProviderAuthenticationError,
+  IntegrationLogger,
+} from '@jupiterone/integration-sdk-core';
+import { BaseAPIClient } from '@jupiterone/integration-sdk-http-client';
 
 import { IntegrationConfig } from './config';
 import { AcmeUser, AcmeGroup } from './types';
@@ -15,38 +17,27 @@ export type ResourceIteratee<T> = (each: T) => Promise<void> | void;
  * place to handle error responses and implement common patterns for iterating
  * resources.
  */
-export class APIClient {
-  constructor(readonly config: IntegrationConfig) {}
+export class APIClient extends BaseAPIClient {
+  constructor(
+    readonly config: IntegrationConfig,
+    readonly logger: IntegrationLogger,
+  ) {
+    super({
+      baseUrl: 'https://example.com/api/v1',
+      logger,
+    });
+  }
 
   public async verifyAuthentication(): Promise<void> {
     // TODO make the most light-weight request possible to validate
     // authentication works with the provided credentials, throw an err if
     // authentication fails
-    const request = new Promise<void>((resolve, reject) => {
-      http.get(
-        {
-          hostname: 'localhost',
-          port: 443,
-          path: '/api/v1/some/endpoint?limit=1',
-          agent: false,
-          timeout: 10,
-        },
-        (res) => {
-          if (res.statusCode !== 200) {
-            reject(new Error('Provider authentication failed'));
-          } else {
-            resolve();
-          }
-        },
-      );
-    });
-
     try {
-      await request;
+      await this.request('/some/endpoint?limit=1');
     } catch (err) {
       throw new IntegrationProviderAuthenticationError({
         cause: err,
-        endpoint: 'https://localhost/api/v1/some/endpoint?limit=1',
+        endpoint: this.withBaseUrl('/some/endpoint?limit=1'),
         status: err.status,
         statusText: err.statusText,
       });
@@ -119,6 +110,9 @@ export class APIClient {
   }
 }
 
-export function createAPIClient(config: IntegrationConfig): APIClient {
-  return new APIClient(config);
+export function createAPIClient(
+  config: IntegrationConfig,
+  logger: IntegrationLogger,
+): APIClient {
+  return new APIClient(config, logger);
 }
