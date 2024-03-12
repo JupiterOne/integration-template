@@ -63,27 +63,38 @@ export class APIClient extends BaseAPIClient {
     // TODO paginate an endpoint, invoke the iteratee with each record in the
     // page
     //
-    // The provider API will hopefully support pagination. Functions like this
-    // should maintain pagination state, and for each page, for each record in
-    // the page, invoke the `ResourceIteratee`. This will encourage a pattern
-    // where each resource is processed and dropped from memory.
+    // Example of actual pagination implementation:
+    //
+    // const iterator = this.paginate<AcmeUser>(
+    //   { endpoint: '/users' },
+    //   'data.users',
+    //   (data) => {
+    //     const { body } = data;
+    //     const nextCursor = body.nextCursor;
+    //     if (!nextCursor) {
+    //       return; // no more pages
+    //     }
+    //     return {
+    //       nextUrl: `/users?cursor=${nextCursor}`,
+    //     };
+    //   },
+    // );
+    // for await (const user of iterator) {
+    //   await iteratee(user);
+    // }
 
-    const iterator = this.paginate<AcmeUser>(
-      { endpoint: '/users' },
-      'data.users',
-      (data) => {
-        const { body } = data;
-        const nextCursor = body.nextCursor;
-        if (!nextCursor) {
-          return; // no more pages
-        }
-        return {
-          nextUrl: `/users?cursor=${nextCursor}`,
-        };
+    const users: AcmeUser[] = [
+      {
+        id: 'acme-user-1',
+        name: 'User One',
       },
-    );
+      {
+        id: 'acme-user-2',
+        name: 'User Two',
+      },
+    ];
 
-    for await (const user of iterator) {
+    for (const user of users) {
       await iteratee(user);
     }
   }
@@ -99,27 +110,38 @@ export class APIClient extends BaseAPIClient {
     // TODO paginate an endpoint, invoke the iteratee with each record in the
     // page
     //
-    // The provider API will hopefully support pagination. Functions like this
-    // should maintain pagination state, and for each page, for each record in
-    // the page, invoke the `ResourceIteratee`. This will encourage a pattern
-    // where each resource is processed and dropped from memory.
+    // Example of actual pagination implementation:
+    //
+    // const iterator = this.paginate<AcmeGroup>(
+    //   { endpoint: '/groups' },
+    //   'data.groups',
+    //   (data) => {
+    //     const { body } = data;
+    //     const nextCursor = body.nextCursor;
+    //     if (!nextCursor) {
+    //       return; // no more pages
+    //     }
+    //     return {
+    //       nextUrl: `/groups?cursor=${nextCursor}`,
+    //     };
+    //   },
+    // );
+    // for await (const group of iterator) {
+    //   await iteratee(group);
+    // }
 
-    const iterator = this.paginate<AcmeGroup>(
-      { endpoint: '/groups' },
-      'data.groups',
-      (data) => {
-        const { body } = data;
-        const nextCursor = body.nextCursor;
-        if (!nextCursor) {
-          return; // no more pages
-        }
-        return {
-          nextUrl: `/groups?cursor=${nextCursor}`,
-        };
+    const groups: AcmeGroup[] = [
+      {
+        id: 'acme-group-1',
+        name: 'Group One',
+        users: [
+          {
+            id: 'acme-user-1',
+          },
+        ],
       },
-    );
-
-    for await (const group of iterator) {
+    ];
+    for (const group of groups) {
       await iteratee(group);
     }
   }
