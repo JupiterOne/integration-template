@@ -28,16 +28,24 @@ export class APIClient extends BaseAPIClient {
     });
   }
 
+  protected getAuthorizationHeaders(): Record<string, string> {
+    // TODO return the headers necessary to authenticate with the provider
+    return {
+      Authorization: `Bearer ${this.config.apiKey}`,
+    };
+  }
+
   public async verifyAuthentication(): Promise<void> {
     // TODO make the most light-weight request possible to validate
     // authentication works with the provided credentials, throw an err if
     // authentication fails
+    const endpoint = '/some/endpoint?limit=1';
     try {
-      await this.request('/some/endpoint?limit=1');
+      await this.request(endpoint);
     } catch (err) {
       throw new IntegrationProviderAuthenticationError({
         cause: err,
-        endpoint: this.withBaseUrl('/some/endpoint?limit=1'),
+        endpoint: this.withBaseUrl(endpoint),
         status: err.status,
         statusText: err.statusText,
       });
@@ -60,18 +68,22 @@ export class APIClient extends BaseAPIClient {
     // the page, invoke the `ResourceIteratee`. This will encourage a pattern
     // where each resource is processed and dropped from memory.
 
-    const users: AcmeUser[] = [
-      {
-        id: 'acme-user-1',
-        name: 'User One',
+    const iterator = this.paginate<AcmeUser>(
+      { endpoint: '/users' },
+      'data.users',
+      (data) => {
+        const { body } = data;
+        const nextCursor = body.nextCursor;
+        if (!nextCursor) {
+          return; // no more pages
+        }
+        return {
+          nextUrl: `/users?cursor=${nextCursor}`,
+        };
       },
-      {
-        id: 'acme-user-2',
-        name: 'User Two',
-      },
-    ];
+    );
 
-    for (const user of users) {
+    for await (const user of iterator) {
       await iteratee(user);
     }
   }
@@ -92,19 +104,22 @@ export class APIClient extends BaseAPIClient {
     // the page, invoke the `ResourceIteratee`. This will encourage a pattern
     // where each resource is processed and dropped from memory.
 
-    const groups: AcmeGroup[] = [
-      {
-        id: 'acme-group-1',
-        name: 'Group One',
-        users: [
-          {
-            id: 'acme-user-1',
-          },
-        ],
+    const iterator = this.paginate<AcmeGroup>(
+      { endpoint: '/groups' },
+      'data.groups',
+      (data) => {
+        const { body } = data;
+        const nextCursor = body.nextCursor;
+        if (!nextCursor) {
+          return; // no more pages
+        }
+        return {
+          nextUrl: `/groups?cursor=${nextCursor}`,
+        };
       },
-    ];
+    );
 
-    for (const group of groups) {
+    for await (const group of iterator) {
       await iteratee(group);
     }
   }
